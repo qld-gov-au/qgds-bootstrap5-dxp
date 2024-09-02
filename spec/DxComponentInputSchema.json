@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "DxComponentInputSchema.json",
+  "title": "DxComponentInputSchema",
+  "description": "Input schema for a DxComponent",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "DxContentMetaSchema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "object"
+        },
+        "additionalProperties": {
+          "default": false
+        }
+      }
+    }
+  ],
+  "id": "/DxComponentInputSchema.json"
+}

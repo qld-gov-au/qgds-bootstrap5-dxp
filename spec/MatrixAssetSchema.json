@@ -1,0 +1,485 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "MatrixAssetSchema.json",
+  "title": "Matrix asset schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The asset ID."
+    },
+    "type": {
+      "type": "string",
+      "description": "The asset type code."
+    },
+    "type_name": {
+      "type": "string",
+      "description": "The asset type friendly name."
+    },
+    "version": {
+      "type": "string",
+      "description": "The asset semantic version."
+    },
+    "name": {
+      "type": "string",
+      "description": "The asset standard field name."
+    },
+    "short_name": {
+      "type": "string",
+      "description": "The asset standard field short name."
+    },
+    "status": {
+      "type": "object",
+      "description": "A object representing the asset status of the asset resource.",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The bitwise id of the asset status",
+          "enum": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64,
+            128,
+            256
+          ]
+        },
+        "code": {
+          "type": "string",
+          "description": "The type code of the asset status",
+          "enum": [
+            "archived",
+            "under_construction",
+            "pending_approval",
+            "approved",
+            "live",
+            "live_approval",
+            "editing",
+            "editing_approval",
+            "editing_approved"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The description of the asset status",
+          "enum": [
+            "Archived",
+            "Under Construction",
+            "Pending Approval",
+            "Approved To Go Live",
+            "Live",
+            "Up For Review",
+            "Safe Editing",
+            "Safe Editing Pending Approval",
+            "Safe Edit Approved To Go Live"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "code"
+      ]
+    },
+    "created": {
+      "type": "object",
+      "description": "A object representing when the asset status was created.",
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "The creation date of the asset in ISO 8601 format."
+        },
+        "user_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The asset ID of the User that created the asset."
+        }
+      },
+      "required": [
+        "date",
+        "user_id"
+      ]
+    },
+    "updated": {
+      "type": "object",
+      "description": "A object representing when the asset status was last updated.",
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "The last updated date of the asset in ISO 8601 format."
+        },
+        "user_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The asset ID of the User that last updated the asset."
+        }
+      },
+      "required": [
+        "date",
+        "user_id"
+      ]
+    },
+    "published": {
+      "type": "object",
+      "description": "A object representing when the asset status was last published.",
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "The last published date of the asset in ISO 8601 format."
+        },
+        "user_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The asset ID of the User that last published the asset."
+        }
+      },
+      "required": [
+        "date",
+        "user_id"
+      ]
+    },
+    "status_changed": {
+      "type": "object",
+      "description": "A object representing when the asset status was last changed.",
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "The last date the state of the asset was changed in ISO 8601 format."
+        },
+        "user_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The asset ID of the User that last changed the asset status."
+        }
+      },
+      "required": [
+        "date",
+        "user_id"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "description": "The primary URL for the asset.",
+      "example": "http://mydomain.net/page"
+    },
+    "urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "All URLs for the asset including the primary URL.",
+      "example": [
+        "http://mydomain.net/page",
+        "http://seconddomain.net/blog"
+      ]
+    },
+    "attributes": {
+      "type": "object",
+      "description": "List of attributes for the asset in key-value form."
+    },
+    "metadata": {
+      "type": "object",
+      "nullable": true,
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "foo": [
+          "bar1",
+          "bar2"
+        ],
+        "bar": [
+          "foo"
+        ]
+      },
+      "description": "List of metadata values in key-value form."
+    },
+    "contents": {
+      "type": "string",
+      "description": "The contents for the asset (excluding file assets)."
+    },
+    "thumbnail": {
+      "type": "object",
+      "nullable": true,
+      "properties": {
+        "asset_id": {
+          "type": "string",
+          "description": "The asset ID of the Image asset of the file."
+        },
+        "url": {
+          "type": "string",
+          "description": "The accessible URL of the thumbnail image file."
+        },
+        "file_name": {
+          "type": "string",
+          "description": "The file name of the thumbnail image."
+        },
+        "width": {
+          "type": "integer",
+          "description": "The image file width in pixels."
+        },
+        "height": {
+          "type": "integer",
+          "description": "The image file height in pixels."
+        },
+        "file_type": {
+          "type": "string",
+          "description": "The file type of the image file, generally its extension."
+        },
+        "file_size": {
+          "type": "integer",
+          "description": "The file size in bytes"
+        },
+        "file_size_readable": {
+          "type": "integer",
+          "description": "The file size in human readable format"
+        },
+        "title": {
+          "type": "string",
+          "description": "The friendly name of the file asset"
+        },
+        "alt": {
+          "type": "string",
+          "description": "The alt attribute of the Image asset"
+        }
+      },
+      "description": "The thumbnail image associated with the asset, shows a subset data of an image or image variety.",
+      "example": {
+        "asset_id": "42",
+        "url": "http://mydomain.net/image.png",
+        "file_name": "image.png",
+        "width": 630,
+        "height": 630,
+        "file_type": "png",
+        "file_size": 40336,
+        "file_size_readable": "39.4 KB",
+        "title": "Company Logo",
+        "alt": "A company logo image"
+      }
+    },
+    "include_dependents": {
+      "type": "array",
+      "items": {
+        "$ref": "#"
+      },
+      "description": "All direct dependent child assets of the asset in normalized asset format."
+    },
+    "additional": {
+      "description": "Additional data of an arbitrary nature related to the requested asset, which may include derived information or special child asset information.",
+      "anyOf": [
+        {
+          "$ref": "#/definitions/AssetAdditional"
+        },
+        {
+          "$ref": "#/definitions/AssetFileAdditional"
+        },
+        {
+          "$ref": "#/definitions/AssetImageAdditional"
+        },
+        {
+          "$ref": "#/definitions/AssetCalendarEventAdditional"
+        }
+      ]
+    },
+    "lineages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AssetLineage"
+      },
+      "description": "Lineages which the asset is accessible from."
+    },
+    "child_count": {
+      "type": "number",
+      "description": "The child count for the asset."
+    }
+  },
+  "if": {
+    "properties": {
+      "type": {
+        "const": "image"
+      }
+    }
+  },
+  "then": {
+    "properties": {
+      "additional": {
+        "allOf": [
+          {
+            "$ref": "#/definitions/AssetFileAdditional"
+          },
+          {
+            "$ref": "#/definitions/AssetImageAdditional"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "type_name",
+    "version",
+    "name",
+    "short_name",
+    "status",
+    "created",
+    "updated",
+    "published",
+    "url",
+    "urls",
+    "attributes",
+    "additional"
+  ],
+  "definitions": {
+    "AssetAdditional": {
+      "title": "Asset additional info",
+      "type": "object",
+      "properties": {}
+    },
+    "AssetFileAdditional": {
+      "title": "File additional info",
+      "type": "object",
+      "properties": {
+        "file_info": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string"
+            },
+            "size_readable": {
+              "type": "string"
+            },
+            "size_bytes": {
+              "type": "integer"
+            },
+            "width": {
+              "type": "integer",
+              "nullable": true
+            },
+            "height": {
+              "type": "integer",
+              "nullable": true
+            },
+            "modified_readable": {
+              "type": "string"
+            },
+            "modified_unix": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "example": {
+        "file_info": {
+          "file_name": "logo.png",
+          "size_readable": "6.2 MB",
+          "size_bytes": 6553070,
+          "width": 1200,
+          "height": 600,
+          "modified_readable": "Feb 3, 2023 12:26 PM",
+          "modified_unix": 1675387561
+        }
+      },
+      "required": [
+        "file_info"
+      ]
+    },
+    "AssetImageAdditional": {
+      "title": "Image additional info",
+      "properties": {
+        "varieties": {
+          "type": "array",
+          "items": {
+            "$ref": "#"
+          }
+        }
+      },
+      "required": [
+        "varieties"
+      ]
+    },
+    "AssetCalendarEventAdditional": {
+      "title": "Calendar Event additional info",
+      "type": "object",
+      "properties": {
+        "event_info": {
+          "type": "object",
+          "properties": {
+            "duration": {
+              "type": "integer"
+            },
+            "frequency": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        }
+      },
+      "required": [
+        "event_info"
+      ],
+      "example": {
+        "event_info": {
+          "duration": 1800,
+          "frequency": "FREQ=DAILY;INTERVAL=1"
+        }
+      }
+    },
+    "AssetLineage": {
+      "type": "object",
+      "properties": {
+        "asset_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Path to the asset, starting from the root node \"1\" down to the leaf asset node. Ordered by depth."
+        },
+        "inside_system_asset": {
+          "type": "boolean",
+          "description": "Will be true if one of the \"asset_ids\" is a system asset."
+        }
+      },
+      "required": [
+        "asset_ids",
+        "inside_system_asset"
+      ]
+    }
+  },
+  "id": "/MatrixAssetSchema.json"
+}

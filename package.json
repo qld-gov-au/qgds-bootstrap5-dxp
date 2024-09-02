@@ -1,0 +1,32 @@
+{
+  "name": "@qld-gov-au/qgds-bootstrap5-dxp",
+  "version": "2024.19.1",
+  "description": "SQUIZ DXP Component System components for Squiz CMS to generate html for qgds-bootstrap5 library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qld-gov-au/qgds-bootstrap5-dxp"
+  },
+  "main": "index.js",
+  "scripts": {
+    "prepare": "npm run build",
+    "login": "dxp-next auth login",
+    "lint": "echo 'fix lint me'",
+    "build": "node esbuild.js --dev",
+    "release": "node esbuild.js",
+    "test": "echo 'no unit tests built yet'",
+    "serve": "npm run build && node ./node_modules/@squiz/dxp-cli-next/bin/dxp.js cmp dev-ui ./dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@qld-gov-au/qgds-bootstrap5": "^1.1.9"
+  },
+  "devDependencies": {
+    "@squiz/dxp-cli-next": "^5.19.1",
+    "esbuild": "0.23.1",
+    "esbuild-plugin-copy": "2.1.1",
+    "esbuild-sass-plugin": "3.3.1"
+  }
+}
