@@ -4,7 +4,7 @@
     "name": "callout",
     "displayName": "Callout Component",
     "description": "QGDS Bootstrap 5 - Callout Component",
-    "namespace": "qgds-bs5-dev",
+    "namespace": "qgds-bs5-local",
     "mainFunction": "main",
     "functions": [
         {

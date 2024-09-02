@@ -4,7 +4,7 @@
     "name": "video",
     "displayName": "Video Component",
     "description": "QGDS Bootstrap 5 - Video Component",
-    "namespace": "qgds-bs5-dev",
+    "namespace": "qgds-bs5-local",
     "mainFunction": "main",
     "functions": [
         {

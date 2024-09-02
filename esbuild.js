@@ -3,10 +3,13 @@
 const esbuild = require('esbuild');
 const fs = require('fs');
 const path = require('path');
+const chokidar = require('chokidar'); // Added chokidar for file watching
 
 // Get command-line arguments
 const args = process.argv.slice(2);
+const isLocalBuild = args.includes('--local');
 const isDevBuild = args.includes('--dev');
+const isWatchBuild = args.includes('--watch');
 
 // Directory paths
 const srcDir = path.join(__dirname, 'src');
@@ -19,10 +22,12 @@ const packageVersion = packageJson.version;
 
 function getTimestamp() {
   const now = new Date();
+  const month = String(now.getMonth());
   const day = String(now.getDate());
   const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
 
-  return `${day}${hours}`;
+  return `${month}${day}${hours}${minutes}`;
 }
 
 // Add a timestamp only if it's a dev build
@@ -62,15 +67,18 @@ function updateManifestVersion(manifestPath) {
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
   const oldVersion = manifest.version;
   const version = isDevBuild ? `${packageVersion}${getTimestamp()}` : `${packageVersion}`;
+  const namespace = isDevBuild ? `qgds-bs5-dev` : `qgds-bs5`;
+
+  if (!isLocalBuild) {
     manifest.version = version;
-    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
-    console.log(`Updated version in ${manifestPath} to ${version}`);
+    manifest.namespace = namespace;
+  }
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
+  console.log(`Updated version in ${manifestPath} to ${version} with namespace ${namespace}`);
 
 }
 
-// Get all main.cjs files
-const files = findFiles(srcDir);
-files.forEach((file) => {
+function processFile(file) {
   const relativePath = path.relative(srcDir, file);
   const outFile = path.join(distDir, relativePath);
 
@@ -98,7 +106,7 @@ files.forEach((file) => {
       entryPoints: [file],
       outfile: outFile,
       minify: !isDevBuild,
-      sourcemap: isDevBuild,
+      sourcemap: isDevBuild
     });
     console.log(`Processed CSS ${file} to ${outFile}`);
   } else if (file.endsWith('.scss')) {
@@ -116,4 +124,26 @@ files.forEach((file) => {
     // Copy non-CJS, non-CSS files
     copyFile(file, outFile);
   }
+}
+
+console.log("clean dist")
+if (fs.existsSync("./dist")) {
+  fs.rmSync("./dist", { recursive: true });
+}
+
+
+const files = findFiles(srcDir);
+files.forEach((file) => {
+  processFile(file);
 });
+
+if (isWatchBuild) {
+  chokidar.watch(srcDir, { ignoreInitial: true }).on('all', (event, filePath) => {
+    if (fs.existsSync(filePath) && !fs.lstatSync(filePath).isDirectory()) {
+      console.log(`File ${event}: ${filePath}`);
+      processFile(filePath);
+    }
+  });
+
+  console.log('Watching for changes...');
+}

@@ -1,7 +1,7 @@
 {
     "$schema": "http://localhost:3000/schemas/v1.json",
     "name": "inpagealert",
-    "namespace": "qgds-bs5-dev",
+    "namespace": "qgds-bs5-local",
     "displayName": "Inpage Alert Component",
     "description": "QGDS Bootstrap 5 - Inpage alert Component",
     "version": "1.0.0",

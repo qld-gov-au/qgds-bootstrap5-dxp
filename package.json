@@ -1,6 +1,6 @@
 {
   "name": "@qld-gov-au/qgds-bootstrap5-dxp",
-  "version": "2024.19.1",
+  "version": "1.0.2",
   "description": "SQUIZ DXP Component System components for Squiz CMS to generate html for qgds-bootstrap5 library",
   "repository": {
     "type": "git",
@@ -12,9 +12,13 @@
     "login": "dxp-next auth login",
     "lint": "echo 'fix lint me'",
     "build": "node esbuild.js --dev",
+    "build:local": "node esbuild.js --local",
+    "watch": "node esbuild.js --dev --watch",
     "release": "node esbuild.js",
     "test": "echo 'no unit tests built yet'",
-    "serve": "npm run build && node ./node_modules/@squiz/dxp-cli-next/bin/dxp.js cmp dev-ui ./dist"
+    "serve:squiz-dev-ui": "node ./node_modules/@squiz/dxp-cli-next/bin/dxp.js cmp dev-ui ./dist",
+    "serve": "npm run build:local && npm run serve:squiz-dev-ui",
+    "serve:watch": "npm-run-all --parallel --race watch serve:squiz-dev-ui"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +30,9 @@
   "devDependencies": {
     "@squiz/dxp-cli-next": "^5.19.1",
     "esbuild": "0.23.1",
+    "chokidar": "^3.6.0",
     "esbuild-plugin-copy": "2.1.1",
-    "esbuild-sass-plugin": "3.3.1"
+    "esbuild-sass-plugin": "3.3.1",
+    "npm-run-all2": "6.2.2"
   }
 }

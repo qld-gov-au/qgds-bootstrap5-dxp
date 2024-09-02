@@ -8,10 +8,10 @@
         "id": "queue",
         "color": {
             "type": "hex",
-            "value": "#ae81ff"
+            "value": "#ae71ff"
         }
     },
-    "namespace": "qgds-bs5-dev",
+    "namespace": "qgds-bs5-local",
     "mainFunction": "main",
     "functions": [
         {
