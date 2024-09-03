@@ -1,0 +1,95 @@
+{
+    "$schema": "http://localhost:3000/schemas/v1.json#",
+    "version": "1.0.1",
+    "name": "global-alert",
+    "displayName": "Global Alert",
+    "description": "QGDS Bootstrap 5 - Global Alert",
+    "icon": {
+        "id": "notification_important",
+        "color": {
+            "type": "hex",
+            "value": "#EA3323"
+        }
+    },
+    "namespace": "qgds-bs5-layout-local",
+    "mainFunction": "main",
+    "functions": [
+        {
+            "name": "main",
+            "entry": "main.cjs",
+            "input": {
+                "type": "object",
+                "properties": {
+                    "alertItems": {
+                        "title": "Global Alert items array",
+                        "type": "array",
+                        "items": { 
+                            "type": "object",
+                            "properties": {
+                                "variant": {
+                                    "type": "string",
+                                    "enum": [
+                                        "critical",
+                                        "warning",
+                                        "info"
+                                    ]
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "format": "multi-line"
+                                },
+                                "action": {
+                                    "type": "string",
+                                    "format": "multi-line"
+                                }
+                            },
+                            "required": ["variant", "content"]
+                        }
+                    }
+                },
+                "required": ["alertItems"]
+            },
+            "output": {
+                "responseType": "html",
+                "staticFiles": [
+                    {
+                        "location": "header",
+                        "file": {
+                            "type": "css",
+                            "filepath": "https://static.qgov.net.au/qgds-bootstrap5/v1/v1.x.x-latest/assets/css/qld.bootstrap.css"
+                        }
+                    },
+                    {
+                        "location": "footer",
+                        "file": {
+                            "type": "js",
+                            "filepath": "https://static.qgov.net.au/qgds-bootstrap5/v1/v1.x.x-latest/assets/js/bootstrap.min.js"
+                        }
+                    },
+                    {
+                        "location": "footer",
+                        "file": {
+                            "type": "js",
+                            "filepath": "https://static.qgov.net.au/qgds-bootstrap5/v1/v1.x.x-latest/assets/js/qld.bootstrap.min.js"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "previews": {
+        "default": {
+            "functionData": {
+                "main": {
+                    "inputData": {
+                        "type": "file",
+                        "path": "previews/example.data.json"
+                    },
+                    "wrapper": {
+                        "path": "previews/preview.html"
+                    }
+                }
+            }
+        }
+    }
+}
