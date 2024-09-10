@@ -1,0 +1,75 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "version": "1.0.1",
+  "name": "breadcrumbs",
+  "displayName": "Breadcrumbs Component",
+  "description": "QGDS Bootstrap 5 - Breadcrumbs Component",
+  "namespace": "qgds-bs5-local",
+  "mainFunction": "main",
+  "staticFiles": {
+    "locationRoot": "static"
+  },
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.cjs",
+      "input": {
+        "type": "object",
+        "properties": {
+          "colour": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "responseType": "html",
+        "staticFiles": [
+          {
+            "location": "header",
+            "file": {
+              "type": "css",
+              "filepath": "https://static.qgov.net.au/qgds-bootstrap5/v1/v1.x.x-latest/assets/css/qld.bootstrap.css"
+            }
+          },
+          {
+            "location": "header",
+            "file": {
+              "type": "css",
+              "filepath": "breadcrumb.css"
+            }
+          },
+          {
+            "location": "footer",
+            "file": {
+              "type": "js",
+              "filepath": "https://static.qgov.net.au/qgds-bootstrap5/v1/v1.x.x-latest/assets/js/bootstrap.min.js"
+            }
+          },
+          {
+            "location": "footer",
+            "file": {
+              "type": "js",
+              "filepath": "https://static.qgov.net.au/qgds-bootstrap5/v1/v1.x.x-latest/assets/js/qld.bootstrap.min.js"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "previews/example.data.json"
+          },
+          "wrapper": {
+            "path": "previews/preview.html"
+          }
+        }
+      }
+    }
+  }
+}
