@@ -1,10 +1,10 @@
 {
   "$schema": "http://localhost:3000/schemas/v1.json#",
-  "version": "1.0.17",
+  "version": "1.0.1",
   "name": "breadcrumbs",
   "displayName": "Breadcrumbs Component",
   "description": "QGDS Bootstrap 5 - Breadcrumbs Component",
-  "namespace": "qgds-bs5-local",
+  "namespace": "qgds-bs5-layout-local",
   "mainFunction": "main",
   "staticFiles": {
     "locationRoot": "static"
