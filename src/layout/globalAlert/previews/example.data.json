@@ -1,0 +1,19 @@
+{
+	"alertItems": [
+		{
+			"variant": "critical",
+			"content": "<strong>Testing:</strong> This website is currently undergoing testing",
+			"action": "<a href='https://www.qld.gov.au/'><span>Read more</span></a>"
+		},
+		{
+			"variant": "warning",
+			"content": "<strong>Testing:</strong> This website is currently undergoing testing",
+			"action": "<a href='https://www.qld.gov.au/'><span>Learn more</span></a>"
+		},
+		{
+			"variant": "info",
+			"content": "<strong>Testing:</strong> This website is currently undergoing testing",
+			"action": "<a href='https://www.qld.gov.au/'><span>Learn more</span></a>"
+		}
+	]
+}

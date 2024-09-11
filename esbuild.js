@@ -68,14 +68,20 @@ function updateManifestVersion(manifestPath) {
   const oldVersion = manifest.version;
   const version = isDevBuild ? `${packageVersion}${getTimestamp()}` : `${packageVersion}`;
   const namespace = isDevBuild ? `qgds-bs5-dev` : `qgds-bs5`;
+  const namespaceLayout = isDevBuild ? `qgds-bs5-layout-dev` : `qgds-bs5-layout`;
 
   if (!isLocalBuild) {
     manifest.version = version;
+  }
+
+  if (manifestPath.includes("dist/layout/")){
+    manifest.namespace = namespaceLayout;
+  } else {
     manifest.namespace = namespace;
   }
+
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
   console.log(`Updated version in ${manifestPath} to ${version} with namespace ${namespace}`);
-
 }
 
 function processFile(file) {

@@ -2,10 +2,13 @@
 
 This library is for dxp.squiz.cloud to generate the required html structure to use the QGDS Bootstrap5 css/javascript.
 
+There is two namespaces
+* **qgds-bs5 (-dev)**: Used for WYSIWYG editor drag and drop components
+* **qgds-bs5-layout (-dev)**: Used for page template embeds 
 
 ### Quick start
 
-Use namespace and version on each component. 
+Use namespace and version on each component.
 
 ```bash
 npm install
