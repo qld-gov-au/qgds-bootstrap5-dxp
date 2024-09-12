@@ -2255,52 +2255,25 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "type": {
-              "const": "hex"
-            },
-            "value": {
-              "type": "string",
-              "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-            }
+            "type": { "const": "hex" },
+            "value": { "type": "string", "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" }
           },
-          "required": [
-            "type",
-            "value"
-          ]
+          "required": ["type", "value"]
         },
         {
           "title": "ColorEnum",
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "type": {
-              "const": "enum"
-            },
+            "type": { "const": "enum" },
             "value": {
-              "enum": [
-                "gray",
-                "blue",
-                "green",
-                "orange",
-                "red",
-                "purple",
-                "teal",
-                "yellow",
-                "pink"
-              ]
+              "enum": ["gray", "blue", "green", "orange", "red", "purple", "teal", "yellow", "pink"]
             }
           },
-          "required": [
-            "type",
-            "value"
-          ]
+          "required": ["type", "value"]
         }
       ]
     }
   },
-  "required": [
-    "id",
-    "color"
-  ],
-  "id": "/DxComponentIcons.json"
+  "required": ["id", "color"]
 }
