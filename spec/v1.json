@@ -35,10 +35,7 @@
     },
     "type": {
       "type": "string",
-      "enum": [
-        "edge",
-        "server"
-      ],
+      "enum": ["edge", "server"],
       "description": "Type of component that will be deployed to different runtimes"
     },
     "version": {
@@ -64,9 +61,7 @@
             "default": true
           }
         },
-        "required": [
-          "name"
-        ]
+        "required": ["name"]
       }
     },
     "staticFiles": {
@@ -77,9 +72,7 @@
           "description": "The location the system begins looking static files. All static files will be referenced from here."
         }
       },
-      "required": [
-        "locationRoot"
-      ]
+      "required": ["locationRoot"]
     },
     "functions": {
       "type": "array",
@@ -202,10 +195,7 @@
                                   ]
                                 }
                               },
-                              "required": [
-                                "filepath",
-                                "type"
-                              ]
+                              "required": ["filepath", "type"]
                             },
                             {
                               "type": "object",
@@ -257,17 +247,12 @@
                                   ]
                                 }
                               },
-                              "required": [
-                                "filepath"
-                              ]
+                              "required": ["filepath"]
                             }
                           ]
                         }
                       },
-                      "required": [
-                        "location",
-                        "file"
-                      ]
+                      "required": ["location", "file"]
                     }
                   },
                   "headers": {
@@ -279,9 +264,7 @@
                     }
                   }
                 },
-                "required": [
-                  "responseType"
-                ]
+                "required": ["responseType"]
               },
               {
                 "title": "JsonResponse",
@@ -303,10 +286,7 @@
                     }
                   }
                 },
-                "required": [
-                  "responseType",
-                  "definition"
-                ]
+                "required": ["responseType", "definition"]
               }
             ]
           },
@@ -323,18 +303,11 @@
                   "type": "boolean"
                 }
               },
-              "required": [
-                "required"
-              ]
+              "required": ["required"]
             }
           }
         },
-        "required": [
-          "name",
-          "entry",
-          "input",
-          "output"
-        ]
+        "required": ["name", "entry", "input", "output"]
       }
     },
     "previews": {
@@ -349,9 +322,7 @@
         "title": "Preview Definition",
         "type": "object",
         "description": "Name for the preview and how it will be accessed",
-        "required": [
-          "functionData"
-        ],
+        "required": ["functionData"],
         "properties": {
           "functionData": {
             "description": "A map of the functions to their respective preview information. Properties must match name of a function defined in functions list",
@@ -371,23 +342,16 @@
                   "properties": {
                     "type": {
                       "description": "An enum of 'file' or 'inline' for how the input data is defined",
-                      "enum": [
-                        "file",
-                        "inline"
-                      ]
+                      "enum": ["file", "inline"]
                     }
                   },
-                  "required": [
-                    "type"
-                  ],
+                  "required": ["type"],
                   "oneOf": [
                     {
                       "type": "object",
                       "properties": {
                         "type": {
-                          "enum": [
-                            "file"
-                          ]
+                          "enum": ["file"]
                         },
                         "path": {
                           "type": "string",
@@ -395,28 +359,20 @@
                           "description": "Path to input data file"
                         }
                       },
-                      "required": [
-                        "type",
-                        "path"
-                      ]
+                      "required": ["type", "path"]
                     },
                     {
                       "type": "object",
                       "properties": {
                         "type": {
-                          "enum": [
-                            "inline"
-                          ]
+                          "enum": ["inline"]
                         },
                         "value": {
                           "type": "object",
                           "description": "Input data value"
                         }
                       },
-                      "required": [
-                        "type",
-                        "value"
-                      ]
+                      "required": ["type", "value"]
                     }
                   ]
                 },
@@ -438,9 +394,7 @@
                       "description": "File path to the wrapper container"
                     }
                   },
-                  "required": [
-                    "path"
-                  ]
+                  "required": ["path"]
                 }
               }
             }
@@ -461,23 +415,16 @@
         "properties": {
           "type": {
             "description": "An enum of 'file' or 'inline' for how the uri object is defined",
-            "enum": [
-              "file",
-              "inline"
-            ]
+            "enum": ["file", "inline"]
           }
         },
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "oneOf": [
           {
             "type": "object",
             "properties": {
               "type": {
-                "enum": [
-                  "file"
-                ]
+                "enum": ["file"]
               },
               "path": {
                 "type": "string",
@@ -485,43 +432,26 @@
                 "description": "Path to uri object"
               }
             },
-            "required": [
-              "type",
-              "path"
-            ]
+            "required": ["type", "path"]
           },
           {
             "type": "object",
             "properties": {
               "type": {
-                "enum": [
-                  "inline"
-                ]
+                "enum": ["inline"]
               },
               "value": {
                 "$ref": "MatrixAssetSchema.json",
                 "description": "Inline URI object"
               }
             },
-            "required": [
-              "type",
-              "value"
-            ]
+            "required": ["type", "value"]
           }
         ]
       }
     }
   },
-  "required": [
-    "name",
-    "namespace",
-    "displayName",
-    "description",
-    "version",
-    "functions",
-    "$schema",
-    "mainFunction"
-  ],
+  "required": ["name", "namespace", "displayName", "description", "version", "functions", "$schema", "mainFunction"],
   "definitions": {
     "name-pattern": {
       "type": "string",

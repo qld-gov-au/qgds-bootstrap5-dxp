@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "DxContentMetaSchema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://json-schema.org/draft-07/schema#",
   "title": "Core schema meta-schema",
   "definitions": {
     "schemaArray": {
@@ -16,18 +16,7 @@
       "allOf": [{ "$ref": "#/definitions/nonNegativeInteger" }, { "default": 0 }]
     },
     "simpleTypes": {
-      "enum": [
-        "array",
-        "boolean",
-        "integer",
-        "null",
-        "number",
-        "object",
-        "string",
-        "FormattedText",
-        "SquizImage",
-        "SquizLink"
-      ]
+      "enum": ["array", "boolean", "integer", "null", "number", "object", "string"]
     },
     "stringArray": {
       "type": "array",
@@ -151,34 +140,7 @@
         }
       ]
     },
-    "format": {
-      "type": "string",
-      "enum": [
-        "date-time",
-        "email",
-        "hostname",
-        "ipv4",
-        "ipv6",
-        "json-pointer",
-        "matrix-asset-uri",
-        "multi-line",
-        "password",
-        "phone",
-        "regex",
-        "relative-json-pointer",
-        "uri-reference",
-        "uri-template",
-        "uri",
-        "uuid"
-      ]
-    },
-    "matrixAssetTypes": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "$ref": "#/matrixAssetEnum"
-      }
-    },
+    "format": { "type": "string" },
     "contentMediaType": { "type": "string" },
     "contentEncoding": { "type": "string" },
     "if": { "$ref": "#" },
@@ -189,103 +151,5 @@
     "oneOf": { "$ref": "#/definitions/schemaArray" },
     "not": { "$ref": "#" }
   },
-  "additionalProperties": false,
-  "dependencies": {
-    "properties": {
-      "properties": {
-        "required": {
-          "$ref": "#/definitions/stringArray"
-        }
-      },
-      "required": ["required"]
-    }
-  },
-  "matrixAssetEnum": {
-    "enum": [
-      "audioFile",
-      "bodycopyContainer",
-      "bodycopyDiv",
-      "calendarEventsSearchPage",
-      "contentContainerTemplate",
-      "contentTypeMarkdown",
-      "contentTypeNestContent",
-      "contentTypeRawHtml",
-      "contentTypeSnippet",
-      "contentTypeWysiwyg",
-      "cssFileFolder",
-      "cssFile",
-      "customForm",
-      "dataRecord",
-      "designAreaAssetLineage",
-      "designAreaBody",
-      "designAreaMenuNormal",
-      "designAreaNestContent",
-      "designCssCustomisation",
-      "designCss",
-      "designCustomisation",
-      "designScss",
-      "design",
-      "docx",
-      "excelDoc",
-      "file",
-      "folder",
-      "gitBridge",
-      "googleAnalyticsConnector",
-      "googleAnalyticsView",
-      "image",
-      "jsFileFolder",
-      "jsFile",
-      "jsonWebToken",
-      "layoutManager",
-      "layout",
-      "link",
-      "metadataFieldDate",
-      "metadataFieldRelatedAsset",
-      "metadataFieldSelect",
-      "metadataFieldText",
-      "metadataFieldWysiwyg",
-      "metadataSchema",
-      "metadataSection",
-      "newsItem",
-      "oauthAccountManager",
-      "pageAccountManager",
-      "pageAssetListing",
-      "pageCalendarEventsSearch",
-      "pageCalendar",
-      "pagePasswordReset",
-      "pageRemoteContent",
-      "pageRestResourceJs",
-      "pageRestResourceOauthSession",
-      "pageRestResourceOauthTwoLegged",
-      "pageRestResource",
-      "pageSiteMap",
-      "pageStandard",
-      "paintLayoutBodycopy",
-      "paintLayoutPage",
-      "pdfFile",
-      "pdf",
-      "persona",
-      "powerpointDoc",
-      "pptx",
-      "redirectPage",
-      "regex",
-      "regularExpression",
-      "rtfFile",
-      "samlAccountManager",
-      "saml2Acs",
-      "saml2Sls",
-      "searchPage",
-      "site",
-      "textFile",
-      "TriggerTypes?",
-      "userGroup",
-      "wordDoc",
-      "workflowSchema",
-      "workflowStepCondition",
-      "workflowStep",
-      "workflowStream",
-      "xlsx",
-      "xmlFile"
-    ]
-  }
+  "default": true
 }

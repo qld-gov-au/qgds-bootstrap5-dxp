@@ -35,19 +35,8 @@
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int32",
           "description": "The bitwise id of the asset status",
-          "enum": [
-            1,
-            2,
-            4,
-            8,
-            16,
-            32,
-            64,
-            128,
-            256
-          ]
+          "enum": [1, 2, 4, 8, 16, 32, 64, 128, 256]
         },
         "code": {
           "type": "string",
@@ -80,10 +69,7 @@
           ]
         }
       },
-      "required": [
-        "id",
-        "code"
-      ]
+      "required": ["id", "code"]
     },
     "created": {
       "type": "object",
@@ -91,25 +77,16 @@
       "additionalProperties": false,
       "properties": {
         "date": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "format": "date-time",
           "description": "The creation date of the asset in ISO 8601 format."
         },
         "user_id": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "description": "The asset ID of the User that created the asset."
         }
       },
-      "required": [
-        "date",
-        "user_id"
-      ]
+      "required": ["date", "user_id"]
     },
     "updated": {
       "type": "object",
@@ -117,25 +94,16 @@
       "additionalProperties": false,
       "properties": {
         "date": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "format": "date-time",
           "description": "The last updated date of the asset in ISO 8601 format."
         },
         "user_id": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "description": "The asset ID of the User that last updated the asset."
         }
       },
-      "required": [
-        "date",
-        "user_id"
-      ]
+      "required": ["date", "user_id"]
     },
     "published": {
       "type": "object",
@@ -143,25 +111,16 @@
       "additionalProperties": false,
       "properties": {
         "date": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "format": "date-time",
           "description": "The last published date of the asset in ISO 8601 format."
         },
         "user_id": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "description": "The asset ID of the User that last published the asset."
         }
       },
-      "required": [
-        "date",
-        "user_id"
-      ]
+      "required": ["date", "user_id"]
     },
     "status_changed": {
       "type": "object",
@@ -169,25 +128,16 @@
       "additionalProperties": false,
       "properties": {
         "date": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "format": "date-time",
           "description": "The last date the state of the asset was changed in ISO 8601 format."
         },
         "user_id": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "description": "The asset ID of the User that last changed the asset status."
         }
       },
-      "required": [
-        "date",
-        "user_id"
-      ]
+      "required": ["date", "user_id"]
     },
     "url": {
       "type": "string",
@@ -200,10 +150,7 @@
         "type": "string"
       },
       "description": "All URLs for the asset including the primary URL.",
-      "example": [
-        "http://mydomain.net/page",
-        "http://seconddomain.net/blog"
-      ]
+      "example": ["http://mydomain.net/page", "http://seconddomain.net/blog"]
     },
     "attributes": {
       "type": "object",
@@ -219,13 +166,8 @@
         }
       },
       "example": {
-        "foo": [
-          "bar1",
-          "bar2"
-        ],
-        "bar": [
-          "foo"
-        ]
+        "foo": ["bar1", "bar2"],
+        "bar": ["foo"]
       },
       "description": "List of metadata values in key-value form."
     },
@@ -365,6 +307,7 @@
     "attributes",
     "additional"
   ],
+
   "definitions": {
     "AssetAdditional": {
       "title": "Asset additional info",
@@ -415,9 +358,7 @@
           "modified_unix": 1675387561
         }
       },
-      "required": [
-        "file_info"
-      ]
+      "required": ["file_info"]
     },
     "AssetImageAdditional": {
       "title": "Image additional info",
@@ -429,9 +370,7 @@
           }
         }
       },
-      "required": [
-        "varieties"
-      ]
+      "required": ["varieties"]
     },
     "AssetCalendarEventAdditional": {
       "title": "Calendar Event additional info",
@@ -450,9 +389,7 @@
           }
         }
       },
-      "required": [
-        "event_info"
-      ],
+      "required": ["event_info"],
       "example": {
         "event_info": {
           "duration": 1800,
@@ -475,11 +412,7 @@
           "description": "Will be true if one of the \"asset_ids\" is a system asset."
         }
       },
-      "required": [
-        "asset_ids",
-        "inside_system_asset"
-      ]
+      "required": ["asset_ids", "inside_system_asset"]
     }
-  },
-  "id": "/MatrixAssetSchema.json"
+  }
 }

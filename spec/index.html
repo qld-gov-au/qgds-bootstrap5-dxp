@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!--    <script src="https://cdn.jsdelivr.net/npm/@json-editor/json-editor@latest/dist/jsoneditor.js"></script>-->
+    <script src="./node_modules/jsoneditor/dist/jsoneditor.js"></script>
+    <link rel="stylesheet" href="./node_modules/jsoneditor/dist/jsoneditor.css"></link>
+    <style type="text/css">
+        /*body {*/
+        /*    width: 100%;*/
+
+        /*    font: 11pt sans-serif;*/
+        /*}*/
+        #editor-container {
+            width: 100%;
+            height: 900px;
+            /*min-height: 500px;*/
+        }
+
+        /* custom bold styling for non-default JSON schema values */
+        .jsoneditor-is-not-default {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="form-group"></div>
+    <div id='editor-container'></div>
+
+
+<script>
+
+    async function fetchDataSync(url) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log(url);
+            console.log(data);
+            return data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    (async () => {
+        const data = await fetchDataSync('./v1.json');
+        const Draft07 = await fetchDataSync('./Draft-07.json');
+        const DxComponentIcons = await fetchDataSync('./DxComponentIcons.json');
+        const DxComponentInputSchema = await fetchDataSync('./DxComponentInputSchema.json');
+        const DxContentMetaSchema = await fetchDataSync('./DxContentMetaSchema.json');
+        const MatrixAssetSchema = await fetchDataSync('./MatrixAssetSchema.json');
+        const json = await fetchDataSync('./../src/layout/globalAlert/manifest.json');
+
+        var config = {
+            use_name_attributes: false,
+            theme: 'bootstrap4',
+            disable_edit_json: true,
+            disable_properties: true,
+            disable_collapse: true,
+            schema: data,
+            ajax: true,
+            refs: true,
+            allowSchemaSuggestions: true,
+            mode: 'text',
+            modes: ['code', 'form', 'text', 'tree', 'view', 'preview'], // allowed modes
+            onModeChange: function (newMode, oldMode) {
+                console.log('Mode switched from', oldMode, 'to', newMode)
+            },
+            schemaRefs: {
+                // Draft07,
+                "DxComponentIcons.json": DxComponentIcons,
+                "DxContentMetaSchema.json": DxContentMetaSchema,
+                "MatrixAssetSchema.json": MatrixAssetSchema,
+                "DxComponentInputSchema.json": DxComponentInputSchema
+            },
+
+        }
+
+        var editor = new JSONEditor(document.querySelector('#editor-container'), config, json)
+
+    })();
+
+
+
+</script>
+</body>
+</html>
