@@ -30,7 +30,7 @@
   "devDependencies": {
     "@squiz/dxp-cli-next": "^5.19.1",
     "esbuild": "0.23.1",
-    "chokidar": "^3.6.0",
+    "chokidar": "^4.0.0",
     "esbuild-plugin-copy": "2.1.1",
     "esbuild-sass-plugin": "3.3.1",
     "npm-run-all2": "6.2.3"
