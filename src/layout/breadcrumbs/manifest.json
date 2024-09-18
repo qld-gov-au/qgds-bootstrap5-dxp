@@ -4,7 +4,7 @@
   "name": "breadcrumbs",
   "displayName": "Breadcrumbs Component",
   "description": "QGDS Bootstrap 5 - Breadcrumbs Component",
-  "namespace": "qgds-bs5-local",
+  "namespace": "qgds-bs5-layout-local",
   "mainFunction": "main",
   "staticFiles": {
     "locationRoot": "static"
@@ -16,11 +16,29 @@
       "input": {
         "type": "object",
         "properties": {
-          "colour": {
-            "type": "string"
+          "brandOverride": {
+            "title": "brand override",
+            "type": "string",
+            "enum": ["", "light", "dark", "alt", "dark-alt"]
+          },
+          "breadcrumbs": {
+            "title": "Breadchrumb items array",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "type": "string"
+                },
+                "linktext": {
+                  "type": "string"
+                }
+              },
+              "required": ["link", "linktext"]
+            }
           }
         },
-        "required": []
+        "required": ["breadcrumbs"]
       },
       "output": {
         "responseType": "html",
