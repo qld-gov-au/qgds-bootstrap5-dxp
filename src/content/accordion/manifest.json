@@ -29,25 +29,80 @@
                     "accordionItems": {
                         "title": "Accordion items array",
                         "type": "array",
-                        "items": { 
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "type": "string"
-                                },
-                                "title": {
-                                    "type": "string"
-                                },
-                                "expanded": {
-                                    "type": "boolean"
-                                },
-                                "content": {
-                                    "type": "string",
-                                    "format": "multi-line"
+                        "items": [ {
+                            "allOf" : [
+                            {
+                                "type": "object",
+                                "required": [
+                                    "id",
+                                    "title"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "expanded": {
+                                        "type": "boolean"
+                                    },
+                                    "isLocal": {
+                                        "type": "boolean",
+                                        "title": "Use Inlined data or Referenced Content",
+                                        "description": "If enabled, Will allow multi line string, if false, allow Squiz CMS item.",
+                                        "default": true
+                                    }
                                 }
                             },
-                            "required": ["id", "title"]
-                        }
+                                {  "allOf": [
+                                    {
+                                        "if": {
+                                            "required": [],
+                                            "properties": {
+                                                "accordionItems": {
+                                                    "required": [],
+                                                    "properties": {
+                                                        "isLocal": {
+                                                            "const": true
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "then": {
+                                            "required": [],
+                                            "properties": {
+                                                "accordionItems": {
+                                                    "type": "object",
+                                                    "required": [],
+                                                    "properties": {
+                                                        "content": {
+                                                            "type": "string",
+                                                            "format": "multi-line"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "else": {
+                                            "required": [],
+                                            "properties": {
+                                                "accordionItems": {
+                                                    "type": "object",
+                                                    "required": [],
+                                                    "properties": {
+                                                        "contentUri": {
+                                                            "type": "string",
+                                                            "format": "uri-reference"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                ] }
+                        ] } ]
                     }
                 },
                 "required": ["groupId"]
