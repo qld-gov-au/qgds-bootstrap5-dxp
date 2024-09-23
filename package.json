@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@squiz/dxp-cli-next": "^5.19.1",
-    "esbuild": "0.23.1",
+    "esbuild": "0.24.0",
     "chokidar": "^4.0.0",
     "esbuild-plugin-copy": "2.1.1",
     "esbuild-sass-plugin": "3.3.1",
